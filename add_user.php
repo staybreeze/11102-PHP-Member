@@ -6,4 +6,6 @@ $sql="insert into `users`(`acc`,`pw`,`name`,`address`,`email`)
                     values('{$_POST['acc']}','{$_POST['pw']}','{$_POST['name']}','{$_POST['address']}','{$_POST['email']}')";
 
 
-                    $pdo->exec($sql);
+$pdo->exec($sql);
+
+header("Location:index.php");
