@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>會員註冊</title>
+    <style>
+input{
+    box-shadow: 1px 1px gray;
+    border:1px solid gray;
+    margin-top:20px;
+}
+
+    </style>
 </head>
 
 <body>
@@ -38,9 +46,9 @@
 
         <div>
 
-<input type="submit" value="送出">
-<input type="reset" value="重置">
-</div>
+            <input type="submit" value="送出">
+            <input type="reset" value="重置">
+        </div>
     </form>
 </body>
 
