@@ -28,6 +28,11 @@ $sql = "select count(*) from users where `acc`='$acc' && `pw`='$pw'";
 $user = $pdo->query($sql)->fetchColumn();
 // if($user)的條件式等同$user==1
 
+if (empty($_POST['acc']) || empty($_POST['pw'])) {
+    header('location:login_form.php?error=請輸入帳號和密碼');
+    exit(); 
+}
+
 if ($user) {
     $_SESSION['user'] = $acc;
     header("location:index.php");
