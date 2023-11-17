@@ -32,7 +32,7 @@
             </div>
             <div class="row col-8 my-4">
                 <label for="" class="col-3">密碼：</label>
-                <input type="text" name="pw" id="pw" class="col-9 rounded border-0 border-bottom border-1 ">
+                <input type="password" name="pw" id="pw" class="col-9 rounded border-0 border-bottom border-1 ">
             </div>
             <div class="text-center">
                 <input type="submit" value="送出" class="btn btn-primary mx-2">
