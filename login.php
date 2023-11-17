@@ -1,10 +1,9 @@
 <?php
-session_start();
+include_once "./inc/connect.php";
+
+
 $acc = $_POST['acc'];
 $pw = $_POST['pw'];
-
-$dsn = "mysql:host=localhost;charset=utf8;dbname=member";
-$pdo = new PDO($dsn, 'root', '');
 
 // 一般作法
 // $sql="select * from users where `acc`='$acc' && `pw`='$pw'";

@@ -1,6 +1,7 @@
 <?php
-$dsn="mysql:host=localhost;charset=utf8;dbname=member";
-$pdo=new PDO($dsn,'root','');
+
+// 避免重複導入，因此once就好
+include_once "./inc/connect.php";
 
 // 資料清洗
 // 先把acc資料存在變數裡
