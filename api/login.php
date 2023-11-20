@@ -21,20 +21,32 @@ $pw = $_POST['pw'];
 // 進階作法
 // 由於query找資料時已經比對過資料，因此我們可以透過query比對來產出1/0值
 // 傳輸1/0比傳輸帳密來得有效率
-$sql = "select count(*) from users where `acc`='$acc' && `pw`='$pw'";
+// $sql = "select count(*) from users where `acc`='$acc' && `pw`='$pw'";
 
 // 執行sql語句，並返回該筆資料中指定欄位的資料，$n為欄位的索引值(0,1,2…)
-$user = $pdo->query($sql)->fetchColumn();
+// $user = $pdo->query($sql)->fetchColumn();
 // if($user)的條件式等同$user==1
+
+$res=total('users',['acc'=>$acc,'pw'=>$pw]);
+
 
 if (empty($_POST['acc']) || empty($_POST['pw'])) {
     header('location:login_form.php?error=請輸入帳號和密碼');
     exit(); 
 }
 
-if ($user) {
-    $_SESSION['user'] = $acc;
+// if ($user) {
+//     $_SESSION['user'] = $acc;
+//     header("location:../index.php");
+// } else {
+//     header('location:../login_form.php?error=帳號密碼錯誤');
+// }
+if($res){
+    $_SESSION['user']=$acc;
     header("location:../index.php");
-} else {
+}else{
     header('location:../login_form.php?error=帳號密碼錯誤');
 }
+
+
+?>

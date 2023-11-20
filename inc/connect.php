@@ -7,12 +7,24 @@ session_start();
 ?>
 <?php
 
+function total($table, $id)
+{
+    global $pdo;
+    $sql = "select count(`id`) from `$table` ";
 
-function pdo($db){
-    $dsn="mysql:host=localhost;charset=utf8;dbname=$db";
-    $pdo=new PDO($dsn,'root','');
-
-    return $pdo;
+    if (is_array($id)) {
+        foreach ($id as $col => $value) {
+            $tmp[] = "`$col`='$value'";
+        }
+        $sql .= " where " . join(" && ", $tmp);
+    } else if (is_numeric($id)) {
+        $sql .= " where `id`='$id'";
+    } else {
+        echo "錯誤:參數的資料型態比須是數字或陣列";
+    }
+    echo 'find=>' . $sql;
+    $row = $pdo->query($sql)->fetchColumn();
+    return $row;
 }
 
 // -----all-----
@@ -60,8 +72,7 @@ function all($table = null, $where = '', $other = '')
 
 function find($table, $id)
 {
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=member";
-    $pdo = new PDO($dsn, 'root', '');
+    global $pdo;
     $sql = "select * from `$table` ";
 
     if (is_array($id)) {
@@ -74,7 +85,7 @@ function find($table, $id)
     } else {
         echo "錯誤:參數的資料型態比須是數字或陣列";
     }
-    echo 'find=>' . $sql;
+
     $row = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     return $row;
 }
@@ -85,8 +96,7 @@ function find($table, $id)
 
 function update($table, $id, $cols)
 {
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=member";
-    $pdo = new PDO($dsn, 'root', '');
+    global $pdo;
 
     $sql = "update `$table` set ";
     // 因為要填入兩個變數，因此要分別判斷兩個變數
@@ -137,8 +147,7 @@ function update($table, $id, $cols)
 
 function del($table, $id)
 {
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=member";
-    $pdo = new PDO($dsn, 'root', '');
+    global $pdo;
     $sql = "delete from `$table` ";
 
     if (is_array($id)) {

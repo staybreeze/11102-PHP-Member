@@ -2,10 +2,12 @@
 
 include_once "../inc/connect.php";
 
-$sql="delete from `users` where `id`='{$_GET['id']}'";
+// $sql="delete from `users` where `id`='{$_GET['id']}'";
 
 
-$pdo->exec($sql);
+// $pdo->exec($sql);
+
+del("users",$_GET['id']);
 
 unset($_SESSION['user']);
 

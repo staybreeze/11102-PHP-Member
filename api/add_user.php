@@ -16,11 +16,20 @@ $acc=htmlspecialchars(trim($_POST['acc']));
 
 
 
+// 導入FUNCTION後不需要了
+// $sql="insert into `users`(`acc`,`pw`,`name`,`address`,`email`)
+//                     values('{$_POST['acc']}','{$_POST['pw']}','{$_POST['name']}','{$_POST['address']}','{$_POST['email']}')";
 
-$sql="insert into `users`(`acc`,`pw`,`name`,`address`,`email`)
-                    values('{$_POST['acc']}','{$_POST['pw']}','{$_POST['name']}','{$_POST['address']}','{$_POST['email']}')";
+
+// $pdo->exec($sql);
 
 
-$pdo->exec($sql);
+insert("users",['acc'=>"{$acc}",
+                 'pw'=>"{$_POST['pw']}",
+                 'name'=>"{$_POST['name']}",
+                 'email'=>"{$_POST['email']}",
+                 'address'=>"{$_POST['address']}"]);
+
 
 header("Location:../index.php");
+
