@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('Asia/Taipei');
 $dsn="mysql:host=localhost;charset=utf8;dbname=member";
 $pdo=new PDO($dsn,'root','');
 session_start();
@@ -8,20 +8,7 @@ session_start();
 <?php
     $dsn = "mysql:host=localhost;charset=utf8;dbname=school";
     $pdo = new PDO($dsn, 'root', '');
-//$rows=all('students',['dept'=>'3']);
-//$row=find('students',10);
-//$row=find('students',['dept'=>'1','graduate_at'=>'23']);
-//$rows=all('students',['dept'=>'1','graduate_at'=>'23']);
-//echo "<h3>相同條件使用find()</h3>";
-//dd($row);
-//echo "<hr>";;
-//echo "<h3>相同條件使用all()</h3>";
-//dd($rows);
 
-// $up = update("students", '3', ['dept' => '16', 'name' => '張明珠']);
-
-// dd($up);
-// $row = del('students', 2);
 insert('dept',['code'=>'170','name'=>'戲劇系']);
 
 function pdo($db){
