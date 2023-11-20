@@ -1,15 +1,12 @@
 <?php
 date_default_timezone_set('Asia/Taipei');
-$dsn="mysql:host=localhost;charset=utf8;dbname=member";
-$pdo=new PDO($dsn,'root','');
+$dsn = "mysql:host=localhost;charset=utf8;dbname=member";
+$pdo = new PDO($dsn, 'root', '');
 session_start();
 
 ?>
 <?php
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=school";
-    $pdo = new PDO($dsn, 'root', '');
 
-insert('dept',['code'=>'170','name'=>'戲劇系']);
 
 function pdo($db){
     $dsn="mysql:host=localhost;charset=utf8;dbname=$db";
@@ -63,7 +60,7 @@ function all($table = null, $where = '', $other = '')
 
 function find($table, $id)
 {
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=school";
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=member";
     $pdo = new PDO($dsn, 'root', '');
     $sql = "select * from `$table` ";
 
@@ -88,7 +85,7 @@ function find($table, $id)
 
 function update($table, $id, $cols)
 {
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=school";
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=member";
     $pdo = new PDO($dsn, 'root', '');
 
     $sql = "update `$table` set ";
@@ -140,7 +137,7 @@ function update($table, $id, $cols)
 
 function del($table, $id)
 {
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=school";
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=member";
     $pdo = new PDO($dsn, 'root', '');
     $sql = "delete from `$table` ";
 

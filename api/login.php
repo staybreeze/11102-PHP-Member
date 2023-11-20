@@ -1,5 +1,5 @@
 <?php
-include_once "./inc/connect.php";
+include_once "../inc/connect.php";
 
 
 $acc = $_POST['acc'];
@@ -34,7 +34,7 @@ if (empty($_POST['acc']) || empty($_POST['pw'])) {
 
 if ($user) {
     $_SESSION['user'] = $acc;
-    header("location:index.php");
+    header("location:../index.php");
 } else {
-    header('location:login_form.php?error=帳號密碼錯誤');
+    header('location:../login_form.php?error=帳號密碼錯誤');
 }

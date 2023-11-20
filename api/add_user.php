@@ -1,7 +1,7 @@
 <?php
 
 // 避免重複導入，因此once就好
-include_once "./inc/connect.php";
+include_once "../inc/connect.php";
 
 // 資料清洗
 // 先把acc資料存在變數裡
@@ -23,4 +23,4 @@ $sql="insert into `users`(`acc`,`pw`,`name`,`address`,`email`)
 
 $pdo->exec($sql);
 
-header("Location:index.php");
+header("Location:../index.php");
