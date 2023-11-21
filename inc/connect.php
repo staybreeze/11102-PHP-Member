@@ -10,27 +10,37 @@ session_start();
 function total($table, $id)
 {
     global $pdo;
+    // (`id`)指定只count主鍵
     $sql = "select count(`id`) from `$table` ";
 
     if (is_array($id)) {
+        // foreach的=>代表的是關聯
         foreach ($id as $col => $value) {
+            // 而這邊用=，是因為=代表賦值
+            // 我們在此要創造一個新陣列，因此是賦值而非關聯
+            // 關聯代表已經有存在的事實
+            // 而賦值代表此事實尚未發生，我們正在創造事實中
+            // 暫時存儲迴圈中生成的條件片段
             $tmp[] = "`$col`='$value'";
         }
+        // 當取值的陣列有許多KEY跟VALUE時，用JOIN或IMPLODE將其連接(變字串)
         $sql .= " where " . join(" && ", $tmp);
     } else if (is_numeric($id)) {
         $sql .= " where `id`='$id'";
     } else {
         echo "錯誤:參數的資料型態比須是數字或陣列";
     }
-    // 對於 SELECT COUNT(*) 這樣的聚合查詢，fetchColumn返回的是一個單一的值，通常是整數。
+    // fetchColumn返回的是一個單一的值，通常是整數。
     $row = $pdo->query($sql)->fetchColumn();
-    
+
     return $row;
 }
 
 // -----all-----
 
 // SELECT `col1`,`col2`,... FROM `table1`,`table2`,...　WHERE ...
+// 預設值沒有寫 = ''，那在輸入時就一定要填東西，如果預設為空值( = '')，在輸入時若沒有要填的內容，即可不用填
+
 function all($table = null, $where = '', $other = '')
 {
     // 如果重複的資料很多，就用include
@@ -51,7 +61,6 @@ function all($table = null, $where = '', $other = '')
              */
             if (!empty($where)) {
                 foreach ($where as $col => $value) {
-                    // 暫時存儲迴圈中生成的條件片段
                     $tmp[] = "`$col`='$value'";
                 }
                 $sql .= " where " . join(" && ", $tmp);
@@ -61,7 +70,7 @@ function all($table = null, $where = '', $other = '')
         }
 
         $sql .= $other;
-        echo 'all=>' . $sql;
+        // echo 'all=>' . $sql;
         $rows = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         return $rows;
     } else {
@@ -95,7 +104,7 @@ function find($table, $id)
 
 // UPDATE `table` SET `col1`='value1',`col2`='value2',...　WHERE ...
 
-function update($table, $id, $cols)
+function update($table, $cols, $id)
 {
     global $pdo;
 
@@ -139,7 +148,6 @@ function update($table, $id, $cols)
     }
     echo $sql;
     return $pdo->exec($sql);
-
 }
 
 // -----delete-----
@@ -162,7 +170,7 @@ function del($table, $id)
         echo "錯誤:參數的資料型態比須是數字或陣列";
     }
 
-    echo 'del=>' . $sql;
+    // echo 'del=>' . $sql;
     $row = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     return $row;
 }
@@ -175,26 +183,25 @@ function del($table, $id)
 
 
 
-function insert($table,$values){
+function insert($table, $values)
+{
 
-    
+
     global $pdo;
 
-$sql = "insert into `$table` ";
+    $sql = "insert into `$table` ";
 
-// $cols="(``,``,``,``,)";
-// $vals="('','','','',)";
+    // $cols="(``,``,``,``,)";
+    // $vals="('','','','',)";
 
-$cols="(`".join("`,`",array_keys($values))."`)";
-$vals="('".join("','",$values)."')";
+    $cols = "(`" . join("`,`", array_keys($values)) . "`)";
+    $vals = "('" . join("','", $values) . "')";
 
-$sql=$sql . $cols  ." values ".$vals;
-// $sql=insert into `$table` . (``,``,``,``,) ." values ".('','','','',);
+    $sql = $sql . $cols  . " values " . $vals;
+    // $sql=insert into `$table` . (``,``,``,``,) ." values ".('','','','',);
 
-echo $sql;
-return $pdo->exec($sql);
-
-
+    echo $sql;
+    return $pdo->exec($sql);
 }
 
 function dd($array)
