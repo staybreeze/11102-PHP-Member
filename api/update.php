@@ -20,7 +20,7 @@ $res=update('users', "{$_POST['id']}",['acc'=>"{$_POST['acc']}",
       // }else{
       //   $_SESSION['msg']="資料無異動";
       // }
-
+      // echo $res; 
       if($res>0){
         $_SESSION['msg']="更新成功";
       }else{

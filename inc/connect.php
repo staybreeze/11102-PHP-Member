@@ -22,8 +22,9 @@ function total($table, $id)
     } else {
         echo "錯誤:參數的資料型態比須是數字或陣列";
     }
-    echo 'find=>' . $sql;
+    // 對於 SELECT COUNT(*) 這樣的聚合查詢，fetchColumn返回的是一個單一的值，通常是整數。
     $row = $pdo->query($sql)->fetchColumn();
+    
     return $row;
 }
 

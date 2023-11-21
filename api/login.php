@@ -41,6 +41,7 @@ if (empty($_POST['acc']) || empty($_POST['pw'])) {
 // } else {
 //     header('location:../login_form.php?error=帳號密碼錯誤');
 // }
+// echo $res;
 if($res){
     $_SESSION['user']=$acc;
     header("location:../index.php");
