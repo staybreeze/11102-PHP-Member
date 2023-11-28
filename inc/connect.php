@@ -109,6 +109,7 @@ function update($table, $cols, $id)
     global $pdo;
 
     $sql = "update `$table` set ";
+
     // 因為要填入兩個變數，因此要分別判斷兩個變數
     // 判斷$cols
     if (!empty($cols)) {
@@ -134,8 +135,8 @@ function update($table, $cols, $id)
     //     echo "錯誤:參數的資料型態應為數字或陣列";
     // }
 
-
     // $id可以不只查id，也可以查其他的where
+  
     if (is_array($id)) {
         foreach ($id as $col => $value) {
             $tmp[] = "`$col`='$value'";
