@@ -5,7 +5,7 @@ session_start();
 class db
 {
 
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=school";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=member";
     protected $pdo;
     protected $table;
 
@@ -261,32 +261,6 @@ function dd($array)
     echo "</pre>";
 }
 
-$student = new DB('students');
-// $result = $student->save(
-//     [
-//         'id'=>2,
-// 'school_num' => '911007',
-// 'name' => '林明珠',
-// 'birthday' => '1984-01-06',
-// 'uni_id' => 'F200000071',
-// 'addr' => '南投縣草屯鎮三爪子坑路106 巷11號3',
-// 'parents' => '王學義',
-// 'tel' => '04-13974327',
-// 'dept' => '16',
-// 'graduate_at' => '2',
-// 'status_code' => '001']
-// );
-
-// $result = $student->update(7, ['name' => '林明珠']);
-
-// $result = $student->q(
-
-//     "select * from `students` "
-
-// );
-// dd($result);
-
-$rows=$student->count();
-// $rows=$student->find(['id'=>'7']);
-// $rows=$student->find(96);
-dd($rows);
+// 使用物件導向要先實例化(new)
+// 物件的變數建議用大寫的方式做區隔，以便未來設其他變數時不會強碰
+$User=new DB('users');

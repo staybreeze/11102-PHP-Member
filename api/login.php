@@ -1,5 +1,6 @@
 <?php
-include_once "../inc/connect.php";
+// include_once "../inc/connect.php";
+include_once "../inc/db.php";
 
 
 $acc = $_POST['acc'];
@@ -27,7 +28,7 @@ $pw = $_POST['pw'];
 // $user = $pdo->query($sql)->fetchColumn();
 // if($user)的條件式等同$user==1
 
-$res=total('users',['acc'=>$acc,'pw'=>$pw]);
+$res=$User->count(['acc'=>$acc,'pw'=>$pw]);
 
 
 if (empty($_POST['acc']) || empty($_POST['pw'])) {

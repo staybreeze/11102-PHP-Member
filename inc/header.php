@@ -1,4 +1,4 @@
-<h1>奇多購商城</h1>
+<h1><a href="./index.php" style="text-decoration:none">奇多購商城</a></h1>
 <header class="nav">
     <div class="nav-item col-4"></div>
     <div class="nav-item col-4">

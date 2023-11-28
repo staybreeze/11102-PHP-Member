@@ -1,7 +1,10 @@
 <?php
 
 // 避免重複導入，因此once就好
-include_once "../inc/connect.php";
+// include_once "../inc/connect.php";
+include_once "../inc/db.php";
+
+
 
 // 資料清洗
 // 先把acc資料存在變數裡
@@ -23,13 +26,13 @@ $acc=htmlspecialchars(trim($_POST['acc']));
 
 // $pdo->exec($sql);
 
-
-insert("users",['acc'=>"{$acc}",
-                 'pw'=>"{$_POST['pw']}",
-                 'name'=>"{$_POST['name']}",
-                 'email'=>"{$_POST['email']}",
-                 'address'=>"{$_POST['address']}"]);
-
+// 確定$_POST都是會處理到的對象，且$_POST本身就是陣列，因此可以save($_POST)
+$User->save($_POST);
+//  $User->save(['acc'=>"{$acc}",
+//                  'pw'=>"{$_POST['pw']}",
+//                  'name'=>"{$_POST['name']}",
+//                  'email'=>"{$_POST['email']}",
+//                  'address'=>"{$_POST['address']}"]);
 
 header("Location:../index.php");
 
