@@ -44,5 +44,6 @@ include_once "./inc/header.php";
     
     </form>
 </div>
+<?php include_once "./inc/footer.php";?>
 </body>
 </html>
